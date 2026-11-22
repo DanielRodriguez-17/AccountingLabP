@@ -15,17 +15,22 @@ export function ChallengeAction({
   const [active, setActive] = useState("");
   const [error, setError] = useState<unknown>();
   const [message, setMessage] = useState("");
+  const [result, setResult] = useState("");
   async function execute(id: string) {
     setActive(id);
     setError(undefined);
     setMessage("");
+    setResult("");
     try {
-      await request(`/challenges/${id}/execute`, token, companyId, {
-        method: "POST",
-        body: "{}",
-      });
+      const response = await request<unknown>(
+        `/challenges/${id}/execute`,
+        token,
+        companyId,
+        { method: "POST", body: "{}" },
+      );
+      setResult(JSON.stringify(response, null, 2));
       setMessage(
-        `${id}: la API recibió la solicitud. Consulta el resultado del servidor; esto no acredita pruebas académicas.`,
+        `${id}: resultado real devuelto por la API con datos de demostración. Esto no acredita pruebas académicas.`,
       );
     } catch (err) {
       setError(err);
@@ -38,8 +43,8 @@ export function ChallengeAction({
       <div>
         <span className="eyebrow">Capacidades académicas</span>
         <p>
-          Consulta la disponibilidad del desafío. No se ejecutan soluciones
-          desde la web.
+          Ejecuta el desafío con datos de demostración y muestra el resultado
+          que devuelve la API.
         </p>
       </div>
       <div className="button-row">
@@ -57,6 +62,7 @@ export function ChallengeAction({
       </div>
       <ErrorNotice error={error} />
       {message && <p role="status">{message}</p>}
+      {result && <pre className="json-result" aria-label="Resultado devuelto por la API">{result}</pre>}
     </section>
   );
 }
