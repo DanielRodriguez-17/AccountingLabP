@@ -10,7 +10,7 @@ Este documento explica cómo se resolvió cada desafío (DP-01 a DP-22): el prob
 - **Excepciones.** Las entradas inválidas lanzan `ArgumentException` simple, porque `Assert.Throws<T>` exige el tipo exacto. La excepción es la tolerancia negativa de DP-21, que pide `ArgumentOutOfRangeException`.
 - **HTTP.** En los endpoints de los desafíos, el controlador traduce `ArgumentException`, `FormatException` e `InvalidOperationException` a 400 y `UnauthorizedAccessException` a 403. Un `PatternPendingException` seguiría dando 501.
 
----
+
 
 ## DP-01 Factory Method
 
@@ -61,7 +61,7 @@ classDiagram
 
 **Pruebas.** Tres: valores conservados con id nuevo, tipo desconocido rechazado y los cuatro tipos con importe cero.
 
----
+
 
 ## DP-02 Abstract Factory
 
@@ -108,7 +108,7 @@ classDiagram
 
 **Pruebas.** Tres: roles en orden con una clave, perfil inexistente rechazado y perfiles distintos con claves distintas.
 
----
+
 
 ## DP-03 Builder
 
@@ -145,7 +145,7 @@ classDiagram
 
 **Pruebas.** Tres: secciones, anexos y fechas conservados, intervalo invertido rechazado e informe mínimo.
 
----
+
 
 ## DP-04 Prototype
 
@@ -186,7 +186,7 @@ classDiagram
 
 **Pruebas.** Tres: valores con identidad propia, fuente nula rechazada y etiquetas y renglones independientes del original.
 
----
+
 
 ## DP-05 Singleton
 
@@ -219,7 +219,7 @@ classDiagram
 
 **Pruebas.** Tres: misma identidad entre llamadas, 16 accesos concurrentes y copia independiente con `with`.
 
----
+
 
 ## DP-06 Adapter
 
@@ -257,7 +257,7 @@ classDiagram
 
 **Pruebas.** Tres: BancoA con decimales exactos, JSON inválido (`FormatException`) y BancoB con importes negativos y cero.
 
----
+
 
 ## DP-07 Bridge
 
@@ -295,7 +295,7 @@ classDiagram
 
 **Pruebas.** Tres: las cuatro combinaciones, formato desconocido rechazado y cero exacto en JSON.
 
----
+
 
 ## DP-08 Composite
 
@@ -331,7 +331,7 @@ classDiagram
 
 **Pruebas.** Tres: totales anidados (100.1250), cuenta de movimiento con hijos rechazada y grupo vacío en cero.
 
----
+
 
 ## DP-09 Decorator
 
@@ -366,7 +366,7 @@ classDiagram
 
 **Pruebas.** Tres: ambas características con el cuerpo intacto, característica desconocida rechazada y exportación sin extras idéntica al original.
 
----
+
 
 ## DP-10 Facade
 
@@ -402,7 +402,7 @@ classDiagram
 
 **Pruebas.** Tres: periodo consistente con totales, documentos sin contabilizar rechazados y desbalance mínimo (0.0001) rechazado.
 
----
+
 
 ## DP-11 Flyweight
 
@@ -441,7 +441,7 @@ classDiagram
 
 **Pruebas.** Tres: misma instancia para clasificaciones iguales, distintas sin mezclar e ids e importes intactos.
 
----
+
 
 ## DP-12 Proxy
 
@@ -476,7 +476,7 @@ classDiagram
 
 **Pruebas.** Tres: consulta autorizada con una sola lectura, denegada sin leer la fuente y resultado de otra empresa rechazado.
 
----
+
 
 ## DP-13 Chain of Responsibility
 
@@ -512,7 +512,7 @@ classDiagram
 
 **Pruebas.** Tres: aprobación en el orden pedido, parada en el primer rechazo y límites exactos admitidos.
 
----
+
 
 ## DP-14 Command
 
@@ -550,7 +550,7 @@ classDiagram
 
 **Pruebas.** Tres: aplicación y reversión con vínculos, repetición que devuelve el asiento original y borrador que no se revierte.
 
----
+
 
 ## DP-15 Iterator
 
@@ -581,7 +581,7 @@ classDiagram
 
 **Pruebas.** Tres: orden estable con una página vacía en medio, `Current` inválido fuera de posición y libro vacío.
 
----
+
 
 ## DP-16 Mediator
 
@@ -622,7 +622,7 @@ classDiagram
 
 **Pruebas.** Tres: factura válida publicada con cada componente una vez, inválida solo por validación y participante repetido rechazado.
 
----
+
 
 ## DP-17 Memento
 
@@ -649,7 +649,7 @@ classDiagram
         +Restore(current, snapshot) BudgetDraft
     }
     IBudgetSnapshot <|.. Snapshot
-    BudgetDraftOriginator +-- Snapshot : anidada
+    BudgetDraftOriginator *-- Snapshot : anidada
     BudgetHistoryChallenge ..> BudgetDraftOriginator
     BudgetHistoryChallenge ..> IBudgetSnapshot
 ```
@@ -660,7 +660,7 @@ classDiagram
 
 **Pruebas.** Tres: valores restaurados con el mismo id, aprobado que no admite guardar e instantánea intacta aunque cambien los datos anidados.
 
----
+
 
 ## DP-18 Observer
 
@@ -698,7 +698,7 @@ classDiagram
 
 **Pruebas.** Tres: entrega única a cada suscriptor, baja que evita entregas futuras e identidad duplicada rechazada.
 
----
+
 
 ## DP-19 State
 
@@ -754,7 +754,7 @@ classDiagram
 
 **Pruebas.** Tres: emisión y pago por estados válidos, factura pagada que no se emite de nuevo y el límite exacto del vencimiento.
 
----
+
 
 ## DP-20 Strategy
 
@@ -786,7 +786,7 @@ classDiagram
 
 **Pruebas.** Tres: porcentaje y fijo, solicitud sin regla vigente rechazada y el punto medio 0.00005 redondeado a 0.0001.
 
----
+
 
 ## DP-21 Template Method
 
@@ -819,7 +819,7 @@ classDiagram
 
 **Pruebas.** Tres: modo exacto con un no conciliado, tolerancia negativa rechazada y límite inclusivo sin reutilizar movimientos.
 
----
+
 
 ## DP-22 Visitor
 
@@ -865,7 +865,7 @@ classDiagram
 
 **Pruebas.** Tres: ambas vistas sobre documentos mixtos (total 183), vista desconocida rechazada y colección vacía en cero.
 
----
+
 
 ## Cómo se comprueba el conjunto
 
@@ -885,11 +885,11 @@ Los reportes `.trx` de cada proyecto y las capturas están en `docs/Evidencias/`
 
 Para repetirlo, desde la raíz y con la variable `ConnectionStrings__AccountingLabTest` apuntando a una base cuyo nombre contenga `test`:
 
-```powershell
+
 foreach ($p in "UnitTests","ArchitectureTests","PatternChallenges","IntegrationTests") {
   dotnet test tests/AccountingLab.$p --logger "trx;LogFileName=$p.trx" --results-directory artifacts/test-results
 }
-```
+
 
 Las pruebas de la web (`npm --prefix frontend test`) y el script `scripts/Test-Integrity.ps1` no se ejecutaron para este documento.
 
